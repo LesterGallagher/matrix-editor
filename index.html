@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#0dff00">
+
+    <link href="https://fonts.googleapis.com/css?family=Happy+Monkey" rel="stylesheet">
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="banner">
+            <div class="neon">
+                <div>Matrix</div>
+                <div>Code</div>
+                <div>Editor</div>
+            </div>
+            <button onclick="start()" class="btn" id="start">
+                Start
+            </button>
+        </div>
+        <div id="terminal-wrapper">
+            <div id="terminal" contenteditable spellcheck="false">
+                <div>/***********************************************************************</div>
+                <div>* FILENAME :&nbsp; &nbsp; &nbsp; &nbsp; fmcompres.c&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;DESIGN
+                    REF: FMCM00</div>
+                <div>*</div>
+                <div>* DESCRIPTION :</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;File compression and decompression routines.&nbsp;</div>
+                <div>*</div>
+                <div>* PUBLIC FUNCTIONS :</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;key_value_node&nbsp; &nbsp;parse_json_file( char *filename&nbsp;)</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;int&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FM_DecompressFile( key_value_node
+                    *root, unsigned short iscompact&nbsp;)</div>
+                <div>*</div>
+                <div>* NOTES :</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;These functions are a part of the Json-Parse;</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;See ERD EJ0252 for detailed description.</div>
+                <div>*</div>
+                <div>*&nbsp; &nbsp; &nbsp; &nbsp;Copyright S.P.Other Co. 1990, 1995.&nbsp; All rights reserved.</div>
+                <div>*&nbsp;</div>
+                <div>* AUTHOR :&nbsp; &nbsp; Sem Postma Other&nbsp; &nbsp; &nbsp; &nbsp; START DATE :&nbsp; &nbsp; 16 Jan 99
+                </div>
+                <div>*</div>
+                <div>* CHANGES :</div>
+                <div>*</div>
+                <div>* REF NO&nbsp; VERSION DATE&nbsp; &nbsp; WHO&nbsp; &nbsp; &nbsp;DETAIL</div>
+                <div>* F21/33&nbsp; A.03.04 22Jan99 JR&nbsp; &nbsp; &nbsp; Function parse_json corrected</div>
+                <div>*</div>
+                <div>
+                    <br>
+                </div>
+                <div>#include "helpers.h"</div>
+                <div>#include &lt;string.h&gt;</div>
+                <div>#include &lt;stdio.h&gt;</div>
+                <div>#include &lt;stdlib.h&gt;</div>
+                <div>
+                    <br>
+                </div>
+                <div>key_value_node *parse_json_file(char *filename) {</div>
+                <div>&nbsp; &nbsp; char *str = NULL;</div>
+                <div>&nbsp; &nbsp; long length;</div>
+                <div>&nbsp; &nbsp; FILE *f = fopen(filename, "r");</div>
+                <div>&nbsp; &nbsp; if (f == NULL) return NULL;</div>
+                <div>&nbsp; &nbsp; else {</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; if (fseek(f, 0, SEEK_END)) return NULL;</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; length = ftell(f);</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; if (fseek(f, 0, SEEK_SET)) return NULL;</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; str = malloc(length + sizeof(char));</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; if (str) fread(str, 1, length, f);</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; else return NULL;</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; str[length] = '\0';</div>
+                <div>&nbsp; &nbsp; &nbsp; &nbsp; if (fclose(f)) return NULL;</div>
+                <div>&nbsp; &nbsp; }</div>
+                <div>&nbsp; &nbsp; key_value_node *root = parse_json(str);</div>
+                <div>&nbsp; &nbsp; free(str);</div>
+                <div>&nbsp; &nbsp; return root;</div>
+                <div>}</div>
+                <div>
+                    <br>
+                </div>
+                <div>int print_key_value_tree(key_value_node *root, unsigned short iscompact) {</div>
+                <div>&nbsp; &nbsp; iscompact ? print_compact_key_value_tree_rec(root, 0) : print_key_value_tree_rec(root, 0);
+                </div>
+                <div>&nbsp; &nbsp; return 0;</div>
+                <div>}</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sql-editor.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
